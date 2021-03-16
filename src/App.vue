@@ -1,19 +1,28 @@
 <template>
   <div id="app">
-    <input>
-    <button @click="checkBill">CHECK BILL</button>
+    <h1>FIAT</h1>
+    <f-btn-wrapper>
+      <f-btn type="primary" size="large">
+        Button Text Here
+      </f-btn>
+    </f-btn-wrapper>
   </div>
 </template>
 
 <script>
-
+import { FBtn, FBtnWrapper } from '@dana/fiat'
 export default {
-  name: 'Test App',
+  name: 'App',
   methods: {
     checkBill () {
       console.log('check bill')
     },
   },
+  components: {
+    FBtn,
+    FBtnWrapper
+  },
+
 }
 </script>
 
