@@ -1,16 +1,13 @@
 <template>
   <div id="app">
-    <h1>FIAT</h1>
-    <f-btn-wrapper>
-      <f-btn type="primary" size="large">
-        Button Text Here
-      </f-btn>
-    </f-btn-wrapper>
+    <AppContainer />
   </div>
 </template>
 
 <script>
-import { FBtn, FBtnWrapper } from '@dana/fiat'
+import AppContainer from './components/AppContainer'
+// import { FBtn, FBtnWrapper } from '@dana/fiat'
+
 export default {
   name: 'App',
   methods: {
@@ -19,10 +16,8 @@ export default {
     },
   },
   components: {
-    FBtn,
-    FBtnWrapper
+    AppContainer
   },
-
 }
 </script>
 
