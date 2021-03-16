@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <AppContainer />
+    <router-view />
   </div>
 </template>
 
@@ -8,26 +8,8 @@
 import AppContainer from './components/AppContainer'
 // import { FBtn, FBtnWrapper } from '@dana/fiat'
 
+
 export default {
   name: 'App',
-  methods: {
-    checkBill () {
-      console.log('check bill')
-    },
-  },
-  components: {
-    AppContainer
-  },
 }
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
