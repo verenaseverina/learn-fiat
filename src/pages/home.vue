@@ -1,9 +1,9 @@
 <template>
-  <section>
+  <f-cell>
     <header class="p-16 bg-blue-50">
-      <div class="f-title title-14 text-white">
+      <f-cell class="f-title title-14 text-white">
         Panin
-      </div>
+      </f-cell>
     </header>
 
     <section class="p-16">
@@ -66,11 +66,11 @@
       </f-card>
     </f-dialog>
     </section>
-  </section>
+  </f-cell>
 </template>
 
 <script>
-import { FBtn, FInput, FInputMoney, FDialog, FCard, FCardContent, FCardActions, FCardImg } from '@dana/fiat'
+import { FBtn, FInput, FInputMoney, FDialog, FCard, FCardContent, FCardActions, FCardImg, FCell } from '@dana/fiat'
 export default {
   data(){
     return{
@@ -82,6 +82,7 @@ export default {
       minErrorPlaceholder: "The minimun amount for credit card payment is Rp50.000",
       errorMoney: true,
       toggle: false,
+      FCell,
     }
   },
   components: {
@@ -107,6 +108,7 @@ export default {
       }else{
         this.errorMsg = "The credit card number must be 16 digits.";
       }
+
       if(this.amount !== 0){
         const a = parseInt(this.amount.replaceAll('.', ''));
         if(this.bankCard.length === 19 && a >= this.currentPayerMinAmount){
