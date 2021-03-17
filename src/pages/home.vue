@@ -2,8 +2,8 @@
   <div class="p-16">
 
     <header class="head">
-      <div class="border text-white bg-blue-50">
-        <div class="text f-title title-14">
+      <div class="text-white bg-blue-50 text-white--bg-blue-50--custom">
+        <div class="f-title title-14 f-title--title-14--custom">
           Panin
         </div>
       </div>
@@ -12,26 +12,20 @@
     <body>
 
       <section class="seg1">
-        <div class=" creditCN f-caption caption-12">
+        <div class="f-caption caption-12 f-caption--caption-12--custom">
           CREDIT CARD NUMBER <span @click="support">?</span>
           <f-input :maxlength="19" :errorMsg="remainDigit" format="{4} {4} {4} {4}" type="digital" v-model="bankCard"
-            @input="onChange" placeholder="Example 1234 5678 9012 3456">
-            <template slot="icon-outer-left">
-              <div class="f-input__icon-outer-left mt-16 mr-10">
-                <icon />
-              </div>
-            </template>
-          </f-input>
+            @input="onChange" placeholder="Example 1234 5678 9012 3456" />
         </div>
       </section>
 
       <section class="seg2">
-        <div class=" paymentAm f-caption caption-12">
+        <div class="f-caption caption-12 f-caption--caption-12--custom2">
           PAYMENT AMOUNT
           <div class="moneyBox">
             <f-input-money placeholder="50.000" ref="input" v-model="amount" :min-amount="currentPayerMinAmount" @input="onChange2">
               <template slot="icon-outer-left">
-                <div class="f-input__icon-outer-right mr-12">
+                <div class="f-input__icon-outer-right mr-12 f-input__icon-outer-right--custom">
                   <img src="//a.m.dana.id/resource/imgs/fiat/currency.svg?t=1" />
                 </div>
               </template>
@@ -72,17 +66,17 @@
         bankCard: '',
         amount: '',
         currentPayerMinAmount: 50000,
-        remainDigit: "The credit card number must be 12 digits"
+        remainDigit: ""
       }
     },
     methods: {
       onChange(event) {
+        console.log('on event')
         if (this.bankCard.length >= 1 && this.bankCard.length < 19) {
           this.remainDigit = "The credit card number must be 12 digits"
         } else if(this.bankCard.length < 19){
           this.dataSet.bankCard = true;
-        }
-        else{
+        }else{
           this.remainDigit = "";
         }
       },
@@ -114,7 +108,7 @@
     margin-top: 0.26rem;
   }
 
-  .f-input__icon-outer-right img {
+  .f-input__icon-outer-right--custom img {
     display: block;
     width: 100%;
     height: 100%;
