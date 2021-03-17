@@ -1,23 +1,19 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const resolve = require('../utils/resolve')
-const configBase = require('../config')
+const CopyWebpackPlugin = require("copy-webpack-plugin");
+const resolve = require("../utils/resolve");
+const configBase = require("../config");
 
-const isProd = process.env.NODE_ENV === 'production'
-const config = isProd ? configBase.prod : configBase.dev
+const isProd = process.env.NODE_ENV === "production";
+const config = isProd ? configBase.prod : configBase.dev;
 
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
-const safePostCssParser = require('postcss-safe-parser')
-
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const safePostCssParser = require("postcss-safe-parser");
 
 const webpackBase = {
   entry: {
-    app: [
-      resolve('build/utils/polyfill.js'),
-      resolve('src/app.js'),
-    ]
+    app: [resolve("build/utils/polyfill.js"), resolve("src/app.js")],
   },
   output: {
     path: config.assetsRoot,
@@ -29,15 +25,15 @@ const webpackBase = {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
+        loader: "vue-loader",
       },
       {
         test: /\.js$/,
-        exclude: file => /node_modules/.test(file) && !/\.vue\.js/.test(file),
-        loader: 'babel-loader',
+        exclude: (file) => /node_modules/.test(file) && !/\.vue\.js/.test(file),
+        loader: "babel-loader",
         options: {
           babelrc: true,
-        }
+        },
       },
       {
         test: /\.less$/,
@@ -45,27 +41,25 @@ const webpackBase = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              hmr: process.env.NODE_ENV === 'development',
+              hmr: process.env.NODE_ENV === "development",
               reloadAll: true,
             },
           },
-          'css-loader',
-          'postcss-loader',
+          "css-loader",
+          "postcss-loader",
           {
-            loader: 'less-loader',
+            loader: "less-loader",
             options: {
               lessOptions: {
                 strictMath: true,
                 noIeCompat: true,
-              }
+              },
             },
           },
           {
-            loader: 'style-resources-loader',
+            loader: "style-resources-loader",
             options: {
-              patterns: [
-                resolve('node_modules/@dana/fiat/src/styles/core/variables.less'),
-              ],
+              patterns: [resolve("node_modules/@dana/fiat/src/styles/core/variables.less")],
             },
           },
         ],
@@ -74,16 +68,16 @@ const webpackBase = {
         test: /\.(png|jpe?g|gif|svg)$/,
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              name: '[name].[contenthash].[ext]',
-              outputPath: 'static/img',
-              esModule: false // <- here
-            }
-          }
-        ]
-      }
-    ]
+              name: "[name].[contenthash].[ext]",
+              outputPath: "static/img",
+              esModule: false, // <- here
+            },
+          },
+        ],
+      },
+    ],
   },
 
   plugins: [
@@ -91,10 +85,10 @@ const webpackBase = {
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: 'public',
-          to: 'public',
+          from: "public",
+          to: "public",
           globOptions: {
-            ignore: ['**/index.html'],
+            ignore: ["**/index.html"],
           },
         },
       ],
@@ -106,9 +100,9 @@ const webpackBase = {
   ],
   resolve: {
     alias: {
-      vue$: 'vue/dist/vue.esm.js',
+      vue$: "vue/dist/vue.esm.js",
     },
-    extensions: [".js", ".vue", ".less" ],
+    extensions: [".js", ".vue", ".less"],
   },
   optimization: {
     minimize: false,
@@ -141,9 +135,9 @@ const webpackBase = {
           parser: safePostCssParser,
           map: isProd
             ? {
-              inline: false,
-              annotation: true,
-            }
+                inline: false,
+                annotation: true,
+              }
             : false,
         },
       }),
@@ -164,6 +158,6 @@ const webpackBase = {
     //   },
     // },
   },
-}
+};
 
 module.exports = webpackBase;
