@@ -7,7 +7,7 @@
     </div>
 
     <div class="p-16">
-        <div class="f-caption caption-12">
+        <div class="f-caption caption-12 secondary">
             <div class="mb-6">
               CREDIT CARD NUMBER <span @click="handleToggle">?</span>
             </div>
@@ -22,7 +22,7 @@
               v-model="bankCard"
               :errorMsg="errorMsg"
               @input="eventBankCardError"
-              :showClear="false"
+              :showClear="true"
             />
         </div>  
 
@@ -35,12 +35,14 @@
         v-model="transferAmount"
         :min-amount="currentPayerMinAmount"
         @input="moneyBtnHandler">
-        <template slot="icon-outer-left">
-          <div class="f-input__icon-outer-right mr-12">
+        <template slot="icon-inner">
+          <div class="f-input__icon-inner mr-8">
             <img src="//a.m.dana.id/resource/imgs/fiat/currency.svg?t=1" />
           </div>
         </template>
       </f-input-money>
+
+
 
       <f-btn type="primary" size="large" :disabled="isBtnDisable">
         CHECK BILL
@@ -55,8 +57,8 @@
             <div class="f-caption caption-12">
               Find the 16 digits number on the front part of your credit card
             </div>
-            <f-card-img class="mt-10">
-              <img src="//a.m.dana.id/resource/imgs/fiat/call-cs@3x.png" />
+            <f-card-img class="mt-10" w="100%" h="100%">
+              <img src="../assets/image/credit-card-front.svg"/>
             </f-card-img>
           </f-card-content>
           <div class="mt-16">
@@ -148,14 +150,13 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.f-input__icon-outer-right {
-  width: 0.24rem;
+.f-input__icon-inner {
+  width: 0.24em;
   height: 0.24rem;
-  margin-top: 0.26rem;
 }
-.f-input__icon-outer-right img {
-    display: block;
+.f-input__icon-inner img {
     width: 100%;
     height: 100%;
-  }
+    display: block;
+}
 </style>
