@@ -8,7 +8,7 @@
       </div>
 
     <div class="f-caption caption-12 secondary">
-        <div class="mb-6">CREDIT CARD NUMBER</div>
+        <div class="mb-6">CREDIT CARD NUMBER <span @click="handle">?</span></div>
         <f-input :maxlength="19" :errorMsg="remainDigit" format="{4} {4} {4} {4}" type="digital" v-model="bankCard"
           @input="onChange" placeholder="Example 1234 5678 9012 3456" />
     </div>
@@ -28,14 +28,40 @@
       CHECK BILL
     </f-btn>
 
+    <f-dialog
+      type="modal"
+      ref="modal-button-stacked"
+    >
+    <f-card class="p-12 pt-16">
+        <f-card-content class="f-text-center">
+          <div class="f-title title-16 my-8">
+            How To Find Credit Card Number
+          </div>
+          <div class="f-caption caption-12">
+            Find the 16 digits number on the front part of your credit card
+          </div>
+          <f-card-img class="mt-10" w="100%" h="100%">
+            
+          </f-card-img>
+        </f-card-content>
+        <div class="mt-16">
+          <f-card-actions stacked>
+              <f-btn size="large" @click="handle">
+                GOT IT!
+              </f-btn>
+          </f-card-actions>
+        </div>
+      </f-card>
+    </f-dialog>
+
   </div>
 </template>
 
 <script>
-import { FBtn, FInput, FInputMoney } from '@dana/fiat'
+import { FBtn, FInput, FInputMoney, FCard, FCardImg, FCardContent, FCardAction, FDialog, FBtnWrapper } from '@dana/fiat'
 export default {
   components: {
-    FBtn,FInput, FInputMoney
+    FBtn,FInput, FInputMoney, FCard, FCardImg, FCardContent, FCardAction, FDialog, FBtnWrapper
   },
   data() {
       return {
@@ -43,6 +69,7 @@ export default {
           bankCard: false,
           amount: false,
           isDisabled: true,
+          toggle: true
         },
         bankCard: '',
         amount: '',
@@ -67,6 +94,12 @@ export default {
       else{
         this.dataSet.amount = false;
       }
+    },
+    handle () {
+      this.toggle = !this.toggle
+    },
+    closeModal () {
+      this.$refs.sheet.hide()
     }
   },
   computed: {
